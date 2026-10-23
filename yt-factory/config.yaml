@@ -1,0 +1,23 @@
+# Общие настройки канала. Меняйте здесь — применяется ко всем видео.
+
+channel_name: "WUSSTEST DU?"     # водяной знак внизу кадра
+
+# Голос для каждого языка (бесплатные голоса Microsoft Edge).
+# Список голосов: edge-tts --list-voices
+voices:
+  de: { voice: "de-DE-ConradNeural", rate: "+12%" }
+  en: { voice: "en-US-AndrewNeural", rate: "+10%" }
+  ru: { voice: "ru-RU-DmitryNeural", rate: "+10%" }
+  es: { voice: "es-ES-AlvaroNeural", rate: "+10%" }
+
+formats:
+  short: { width: 1080, height: 1920, font_size: 116, caption_y: 0.62 }
+  long:  { width: 1920, height: 1080, font_size: 92,  caption_y: 0.78 }
+
+style:
+  font: "Montserrat Thin Black"   # имя шрифта из assets/fonts
+  cut_seconds: 1.6                # как часто меняется картинка (темп монтажа)
+  highlight_color: "&H0000E5FF"   # жёлтый для чисел и ключевых слов (формат ASS: &HAABBGGRR)
+  music_volume: 0.10              # громкость фоновой музыки из assets/music
+  sfx_volume: 0.35                # громкость «вжух» на переходах из assets/sfx
+  fps: 30
