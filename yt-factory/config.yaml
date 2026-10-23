@@ -52,7 +52,7 @@ style:
   sfx_volume: 0.35                # звуки: whoosh, pop, boom, ding, scratch
   fps: 30
 
-# Мемные реакции: в сценарии пишите visuals: ["@shocked"] — подставится этот поиск.
+# Мемные реакции: в сценарии пишите visuals: ["@shocked"] — подставится этот поиск (нужен ключ Pixabay или Pexels).
 reactions:
   shocked: "shocked surprised face"
   laugh: "man laughing hard"

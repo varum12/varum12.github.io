@@ -211,6 +211,35 @@ def _search_pexels(query, orientation, n):
     return out[:n]
 
 
+def _search_pixabay(query, orientation, n):
+    """Pixabay: сначала видео (вертикальные — первыми для Shorts), потом фото. Нужен PIXABAY_API_KEY."""
+    key = urllib.parse.quote(os.environ["PIXABAY_API_KEY"])
+    q = urllib.parse.quote(query[:100])
+    portrait = orientation == "portrait"
+    data = _get_json(f"https://pixabay.com/api/videos/?key={key}&q={q}&video_type=film"
+                     f"&safesearch=true&per_page={max(3, n * 3)}")
+    candidates = []
+    for h in data.get("hits", []):
+        files = [f for f in h.get("videos", {}).values() if f.get("url") and f.get("width") and f.get("height")]
+        if not files:
+            continue
+        good = [f for f in files if min(f["width"], f["height"]) >= 1080]
+        best = min(good, key=lambda f: f["width"] * f["height"]) if good else \
+            max(files, key=lambda f: f["width"] * f["height"])
+        # Порядок: нужная ориентация, потом качество от 1080p, потом короткие (меньше качать).
+        rank = ((best["height"] > best["width"]) != portrait, not good, h.get("duration") or 99)
+        candidates.append((rank, {"url": best["url"], "ext": ".mp4",
+                                  "credit": f"Video: {h.get('user', '?')} (Pixabay)"}))
+    out = [c for _, c in sorted(candidates, key=lambda c: c[0])][:n]
+    if len(out) >= n:
+        return out
+    data = _get_json(f"https://pixabay.com/api/?key={key}&q={q}&image_type=photo&safesearch=true"
+                     f"&orientation={'vertical' if portrait else 'horizontal'}&per_page={max(3, n)}")
+    out += [{"url": h["largeImageURL"], "ext": ".jpg", "credit": f"Foto: {h.get('user', '?')} (Pixabay)"}
+            for h in data.get("hits", []) if h.get("largeImageURL")]
+    return out[:n]
+
+
 def _relevant(result, query):
     """Openverse ищет широко и легко подсовывает посторонних людей. Берём картинку, только если
     главное (самое длинное) слово запроса и хотя бы половина остальных есть в названии или тегах."""
@@ -241,14 +270,14 @@ def _search_openverse(query, orientation, n):
 
 
 def fetch_media(query, orientation, n):
-    """Файл/папка из assets/media или поиск: Pexels (если есть ключ) -> Openverse. Возвращает [(путь, автор)]."""
+    """Файл/папка из assets/media или поиск: Pexels/Pixabay (если есть ключ) -> Openverse. Возвращает [(путь, автор)]."""
     local = ROOT / "assets" / "media" / query
     if local.is_file():
         return [(local, None)]
     if local.is_dir():
         return [(p, None) for p in sorted(local.iterdir()) if p.suffix.lower() in MEDIA_EXT]
 
-    provider = "pexels" if os.environ.get("PEXELS_API_KEY") else "openverse"
+    provider = stock_provider() or "openverse"
     slug = re.sub(r"[^a-z0-9]+", "-", query.lower()).strip("-")[:40]
     folder = CACHE / "media" / f"{slug}-{orientation}-{provider}-{hashlib.md5(query.encode()).hexdigest()[:6]}"
     meta = folder / "meta.json"
@@ -259,6 +288,8 @@ def fetch_media(query, orientation, n):
         try:
             if provider == "pexels":
                 items = _search_pexels(query, orientation, n)
+            elif provider == "pixabay":
+                items = _search_pixabay(query, orientation, n)
             if not items:
                 items = _search_openverse(query, orientation, n)
         except Exception as e:  # сеть/лимиты — не роняем всё видео
@@ -281,13 +312,22 @@ def fetch_media(query, orientation, n):
     return [(folder / it["file"], it["credit"]) for it in items]
 
 
+def stock_provider():
+    """Сток с ключом: Pexels или Pixabay. None — только бесплатный Openverse без ключа."""
+    if os.environ.get("PEXELS_API_KEY"):
+        return "pexels"
+    if os.environ.get("PIXABAY_API_KEY"):
+        return "pixabay"
+    return None
+
+
 def resolve_query(q, cfg):
     """@shocked -> поисковый запрос реакции из config.yaml.
 
-    Без ключа Pexels реакции пропускаются (None): в бесплатных фотобанках по таким запросам
+    Без ключа стока реакции пропускаются (None): в Openverse по таким запросам
     находится что попало, лучше показать картинки по теме фразы."""
     if q.startswith("@"):
-        if not os.environ.get("PEXELS_API_KEY"):
+        if not stock_provider():
             return None
         return cfg.get("reactions", {}).get(q[1:], f"{q[1:]} face reaction")
     return q
