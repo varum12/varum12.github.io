@@ -15,6 +15,7 @@ import argparse
 import asyncio
 import base64
 import concurrent.futures as cf
+import functools
 import hashlib
 import json
 import math
@@ -51,10 +52,33 @@ if os.environ.get("SSL_CERT_FILE"):
 import edge_tts  # noqa: E402  (импорт после настройки сертификатов)
 
 
+@functools.cache
+def ff_bins():
+    """ffmpeg с фильтром ass (libass) и ffprobe рядом с ним.
+
+    На Mac обычный `brew install ffmpeg` собран без libass, поэтому сначала ищем ffmpeg-full."""
+    candidates = [os.environ.get("FFMPEG_BIN"), "/opt/homebrew/opt/ffmpeg-full/bin/ffmpeg",
+                  "/usr/local/opt/ffmpeg-full/bin/ffmpeg", shutil.which("ffmpeg")]
+    for c in dict.fromkeys(filter(None, candidates)):
+        if not Path(c).exists():
+            continue
+        filters = subprocess.run([c, "-hide_banner", "-filters"], capture_output=True, text=True).stdout
+        if re.search(r"^\s*\S+\s+ass\s", filters, re.M):
+            probe = Path(c).with_name("ffprobe")
+            return c, str(probe) if probe.exists() else (shutil.which("ffprobe") or "ffprobe")
+    sys.exit("Не найден ffmpeg с поддержкой субтитров (libass).\n"
+             "На Mac выполните: brew install ffmpeg-full")
+
+
 def run(cmd):
+    cmd = list(cmd)
+    if cmd[0] in ("ffmpeg", "ffprobe"):
+        cmd[0] = ff_bins()[0 if cmd[0] == "ffmpeg" else 1]
     res = subprocess.run(cmd, capture_output=True, text=True)
     if res.returncode != 0:
-        sys.exit(f"Ошибка команды:\n{' '.join(map(str, cmd))}\n{res.stderr[-2000:]}")
+        line = " ".join(map(str, cmd))
+        err = res.stderr if len(res.stderr) <= 3000 else res.stderr[:1800] + "\n...\n" + res.stderr[-1000:]
+        sys.exit(f"Ошибка команды:\n{line[:400]}{' ...' if len(line) > 400 else ''}\n{err}")
     return res.stdout
 
 
@@ -387,7 +411,7 @@ def sfx_file(name):
         raw = dest.with_suffix(".raw.wav")
         run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", src, "-af", af, "-ar", "48000", "-ac", "2", str(raw)])
         peak = re.search(r"max_volume: (-?[\d.]+) dB",
-                         subprocess.run(["ffmpeg", "-i", str(raw), "-af", "volumedetect", "-f", "null", "-"],
+                         subprocess.run([ff_bins()[0], "-i", str(raw), "-af", "volumedetect", "-f", "null", "-"],
                                         capture_output=True, text=True).stderr)
         gain = -3.0 - float(peak.group(1)) if peak else 0.0  # пик на -3 dB
         run(["ffmpeg", "-y", "-v", "error", "-i", str(raw), "-af", f"volume={gain:.1f}dB", str(dest)])
