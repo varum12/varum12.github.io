@@ -227,9 +227,10 @@ def _search_openverse(query, orientation, n):
     aspect = "tall" if orientation == "portrait" else "wide"
     base = (f"https://api.openverse.org/v1/images/?q={q}&license_type=commercial,modification"
             f"&category=photograph&size=large&mature=false&page_size={n * 5}")
-    # Flickr отдаёт файлы надёжнее всех; вертикальных фото мало, поэтому дальше берём любые.
+    # Flickr отдаёт файлы надёжнее всех; вертикальных фото мало, поэтому дальше берём любые,
+    # кроме источников, которые запрещают скачивание (StockSnap отвечает 403).
     found = []
-    for extra in (f"&source=flickr&aspect_ratio={aspect}", "&source=flickr", ""):
+    for extra in (f"&source=flickr&aspect_ratio={aspect}", "&source=flickr", "&excluded_source=stocksnap"):
         found = [r for r in _get_json(base + extra).get("results", []) if _relevant(r, query)]
         if len(found) >= n:
             break
@@ -270,9 +271,10 @@ def fetch_media(query, orientation, n):
                 _download(it["url"], dest)
                 frame_size(dest)  # битый файл отсеиваем сразу
                 ok.append({**it, "file": dest.name})
-            except BaseException as e:
-                print(f"  ! не скачалось {it['url']}: {e}")
+            except BaseException:
                 dest.unlink(missing_ok=True)
+        if len(ok) < len(items[:n]):
+            print(f"  · '{query}': скачано {len(ok)} из {len(items[:n])} (остальные источники недоступны)")
         items = ok
         if items:
             meta.write_text(json.dumps(items, ensure_ascii=False, indent=1))
