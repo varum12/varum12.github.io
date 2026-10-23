@@ -1,0 +1,42 @@
+title: "Der kürzeste Krieg der Geschichte dauerte 38 Minuten ⏱️ #shorts"
+lang: de
+format: short
+
+segments:
+  - text: "Der kürzeste Krieg der Geschichte dauerte nur achtunddreißig Minuten."
+    visuals: ["old warship", "@shocked"]
+    pop: "38 MINUTEN?!"
+    shake: true
+    sfx: boom
+  - text: "August 1896. Auf Sansibar, einer Insel vor der Küste Ostafrikas, stirbt der Sultan."
+    visuals: ["zanzibar stone town", "zanzibar beach"]
+  - text: "Ein Verwandter, Khalid, besetzt sofort den Palast. Ohne die Briten zu fragen."
+    visuals: ["palace", "@angry"]
+    emoji: "😤"
+  - text: "Die Briten stellen ein Ultimatum: Bis neun Uhr morgens muss er abtreten."
+    visuals: ["clock", "pocket watch"]
+    emoji: "⏰"
+  - text: "Khalid weigert sich. Um 9 Uhr 2 eröffnen britische Kriegsschiffe das Feuer auf den Palast."
+    visuals: ["battleship cannon", "smoke explosion"]
+    shake: true
+    sfx: boom
+  - text: "Gegen 9 Uhr 40 ist alles vorbei. Die Flagge über dem Palast fällt."
+    visuals: ["flag", "@facepalm"]
+    pop: "VORBEI"
+    sfx: ding
+  - text: "Und wohin flieht der Sultan? Ausgerechnet ins deutsche Konsulat."
+    visuals: ["german flag", "@laugh"]
+    emoji: "🇩🇪"
+    sfx: scratch
+  - text: "Kein Krieg war je kürzer. Folge für mehr Geschichte, die keiner in der Schule lernt."
+    visuals: ["history book", "@thinking"]
+    emoji: "👇"
+
+highlight: [achtunddreißig, Minuten, Ultimatum, Konsulat, deutsche]
+
+description: |
+  Der Britisch-Sansibarische Krieg am 27. August 1896 gilt als kürzester Krieg der Geschichte.
+sources:
+  - "https://de.wikipedia.org/wiki/Britisch-Sansibarischer_Krieg"
+hashtags: [geschichte, wusstestdu, fakten]
+tags: [kürzester krieg, sansibar, geschichte, 1896, wusstest du, fakten]

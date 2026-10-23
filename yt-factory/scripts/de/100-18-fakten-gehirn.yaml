@@ -1,0 +1,272 @@
+# Длинное видео 16:9 (~8 минут) + 5 Shorts из него.
+# Запуск: ./video scripts/de/100-18-fakten-gehirn.yaml
+title: "18 Fakten, bei denen dein Gehirn abstürzt 🤯"
+lang: de
+format: long
+
+thumbnail:
+  text: "18 Fakten Gehirn.exe abgestürzt"
+  visual: "octopus"
+  emoji: "🤯"
+
+segments:
+  - text: "Achtzehn Fakten, die so verrückt klingen, dass du sie sofort googeln willst. Aber jeder einzelne ist wahr."
+    visuals: ["@shocked", "galaxy stars", "octopus"]
+    emoji: "🤯"
+    shake: true
+    sfx: boom
+  - text: "Bleib bis zum Ende. Der letzte Fakt ist so absurd, dass selbst Physiker kurz schlucken. Los geht's."
+    visuals: ["neutron star", "@thinking"]
+
+  # 1
+  - chapter: "Kleopatra und die Mondlandung"
+    pop: "#1"
+    text: "Kleopatra lebte zeitlich näher an der Mondlandung als am Bau der großen Pyramide von Gizeh."
+    visuals: ["pyramids giza", "cleopatra statue"]
+    emoji: "😳"
+  - text: "Die Cheops-Pyramide wurde etwa 2560 vor Christus fertiggestellt. Kleopatra starb im Jahr 30 vor Christus. Dazwischen liegen rund zweitausendfünfhundert Jahre."
+    visuals: ["pyramids desert", "ancient egypt"]
+  - text: "Von Kleopatra bis zur Mondlandung 1969 sind es dagegen nur etwa zweitausend Jahre. Für Kleopatra waren die Pyramiden also schon uralte Geschichte."
+    visuals: ["moon landing astronaut", "moon surface", "@wow"]
+    pop: "WAS?!"
+    sfx: scratch
+
+  # 2
+  - chapter: "Drei Herzen, blaues Blut"
+    pop: "#2"
+    text: "Ein Oktopus hat drei Herzen. Und sein Blut ist blau."
+    visuals: ["octopus underwater", "octopus"]
+    emoji: "🐙"
+  - text: "Zwei Herzen pumpen das Blut durch die Kiemen, das dritte versorgt den restlichen Körper."
+    visuals: ["octopus tentacles", "coral reef"]
+  - text: "Und blau ist das Blut, weil bei Kraken kein Eisen den Sauerstoff transportiert, sondern ein kupferhaltiger Stoff namens Hämocyanin."
+    visuals: ["octopus close up", "@shocked"]
+
+  # 3
+  - chapter: "Ein Tag länger als ein Jahr"
+    pop: "#3"
+    text: "Auf der Venus dauert ein Tag länger als ein ganzes Jahr."
+    visuals: ["venus planet", "planets space"]
+    emoji: "🪐"
+  - text: "Für eine Runde um die Sonne braucht die Venus etwa 225 Erdtage. Für eine einzige Drehung um sich selbst aber rund 243 Tage."
+    visuals: ["solar system", "sun space"]
+  - text: "Und sie dreht sich auch noch andersherum als die Erde. Auf der Venus geht die Sonne also im Westen auf."
+    visuals: ["sunrise", "@facepalm"]
+    pop: "IM WESTEN?!"
+
+  # 4
+  - chapter: "Würfel-Kacke"
+    pop: "#4"
+    text: "Wombats machen würfelförmige Kacke. Ja, wirklich."
+    visuals: ["wombat", "@laugh"]
+    emoji: "💩"
+    sfx: scratch
+  - text: "Der australische Beutelsäuger ist das einzige bekannte Tier mit würfelförmigem Kot."
+    visuals: ["wombat australia", "australia outback"]
+  - text: "Forscher fanden heraus: Der Darm des Wombats hat unterschiedlich dehnbare Bereiche, die den Kot in Form pressen. Dafür gab es 2019 sogar einen Ig-Nobelpreis."
+    visuals: ["scientist laboratory", "@clap"]
+    pop: "PREIS?!"
+  - text: "Ihre Würfel legen Wombats gern auf Steinen und Baumstämmen ab. Vermutlich, um ihr Revier zu markieren."
+    visuals: ["rocks forest", "wombat"]
+
+  # 5
+  - chapter: "Bananen sind Beeren"
+    pop: "#5"
+    text: "Bananen sind Beeren. Erdbeeren nicht."
+    visuals: ["bananas", "strawberries"]
+    emoji: "🍌"
+  - text: "Botanisch ist eine Beere eine Frucht, die aus einem einzigen Fruchtknoten entsteht und ihre Samen im Fruchtfleisch trägt. Genau das ist bei Bananen so. Und übrigens auch bei Tomaten und Kiwis."
+    visuals: ["banana tree", "tomatoes", "kiwi fruit"]
+  - text: "Die Erdbeere dagegen ist eine Sammelnussfrucht. Die kleinen gelben Punkte auf ihr sind die eigentlichen Früchte: winzige Nüsschen."
+    visuals: ["strawberry close up", "@facepalm"]
+    pop: "NÜSSCHEN?!"
+
+  # 6
+  - chapter: "Haie sind älter als Bäume"
+    pop: "#6"
+    text: "Haie gibt es schon länger als Bäume."
+    visuals: ["shark underwater", "forest trees"]
+    emoji: "🦈"
+  - text: "Die ältesten Spuren von Haien sind etwa 450 Millionen Jahre alt. Die ersten echten Bäume tauchten erst vor rund 385 Millionen Jahren auf."
+    visuals: ["shark", "ancient forest"]
+  - text: "Haie haben also die Dinosaurier kommen und gehen sehen. Und sie sind immer noch da."
+    visuals: ["dinosaur skeleton", "shark swimming", "@cool"]
+
+  # 7
+  - chapter: "Honig verdirbt nie"
+    pop: "#7"
+    text: "Honig wird praktisch nie schlecht."
+    visuals: ["honey jar", "honey dripping"]
+    emoji: "🍯"
+  - text: "Er enthält sehr wenig Wasser und ist leicht sauer. Bakterien und Pilze haben darin kaum eine Chance."
+    visuals: ["honeycomb", "bees"]
+  - text: "In altägyptischen Gräbern fanden Archäologen Honig, der Tausende Jahre alt war. Und er war noch immer nicht verdorben."
+    visuals: ["egyptian tomb", "archaeology", "@wow"]
+    pop: "TAUSENDE JAHRE"
+
+  # 8
+  - chapter: "Oxford und die Azteken"
+    pop: "#8"
+    text: "Die Universität Oxford ist älter als das Reich der Azteken."
+    visuals: ["oxford university", "aztec temple"]
+    emoji: "🏛️"
+  - text: "In Oxford wurde schon um das Jahr 1096 unterrichtet. Die Azteken gründeten ihre Hauptstadt Tenochtitlan erst im Jahr 1325."
+    visuals: ["old library", "mexico city ruins", "@thinking"]
+
+  # 9
+  - chapter: "Faultier gegen Delfin"
+    pop: "#9"
+    text: "Faultiere können länger die Luft anhalten als Delfine."
+    visuals: ["sloth", "dolphin"]
+    emoji: "🦥"
+  - text: "Ein Faultier kann seinen Herzschlag so stark verlangsamen, dass es bis zu 40 Minuten unter Wasser bleiben kann. Ein Delfin muss meist spätestens nach etwa zehn Minuten wieder auftauchen."
+    visuals: ["sloth tree", "dolphins jumping"]
+  - text: "Und ja: Faultiere sind überraschend gute Schwimmer."
+    visuals: ["sloth", "@laugh"]
+    pop: "SPEED"
+    sfx: scratch
+
+  # 10
+  - chapter: "Heißer als die Sonne"
+    pop: "#10"
+    text: "Ein Blitz ist etwa fünfmal heißer als die Oberfläche der Sonne."
+    visuals: ["lightning strike", "sun"]
+    emoji: "⚡"
+    shake: true
+    sfx: boom
+  - text: "Ein Blitz erhitzt die Luft auf bis zu dreißigtausend Grad. Die Sonnenoberfläche hat etwa fünftausendfünfhundert Grad."
+    visuals: ["thunderstorm", "lightning sky"]
+  - text: "Die Luft dehnt sich dabei so schlagartig aus, dass es knallt. Diesen Knall hörst du als Donner."
+    visuals: ["storm clouds", "@scared"]
+
+  # 11
+  - chapter: "Seeotter halten Händchen"
+    pop: "#11"
+    text: "Seeotter halten beim Schlafen Händchen."
+    visuals: ["sea otter", "sea otters"]
+    emoji: "🥰"
+  - text: "Damit sie im Wasser nicht voneinander wegtreiben, halten sich manche Seeotter an den Pfoten fest. Oder sie wickeln sich in Seetang ein."
+    visuals: ["sea otter floating", "kelp forest"]
+    pop: "SÜSS"
+
+  # 12
+  - chapter: "Überleben im Weltall"
+    pop: "#12"
+    text: "Es gibt Tiere, die ungeschützt im Weltall überleben."
+    visuals: ["space earth orbit", "microscope"]
+    emoji: "🚀"
+  - text: "Bärtierchen sind winzige Tiere, meist kleiner als ein Millimeter. 2007 schickten Forscher sie ins All und setzten sie dem Vakuum aus. Viele überlebten."
+    visuals: ["tardigrade", "rocket launch"]
+  - text: "Bärtierchen können fast vollständig austrocknen und jahrelang in einer Art Scheintod verharren. Gibt man ihnen Wasser, erwachen sie wieder."
+    visuals: ["moss macro", "water drops", "@wow"]
+    pop: "UNSTERBLICH?"
+
+  # 13
+  - chapter: "Der wachsende Eiffelturm"
+    pop: "#13"
+    text: "Der Eiffelturm ist im Sommer bis zu 15 Zentimeter höher als im Winter."
+    visuals: ["eiffel tower", "paris summer"]
+    emoji: "🗼"
+  - text: "Der Grund ist Physik: Stahl dehnt sich bei Wärme aus. Und bei über 300 Metern Höhe macht das einiges aus."
+    visuals: ["eiffel tower steel", "@thinking"]
+
+  # 14
+  - chapter: "Flamingos sind nicht rosa"
+    pop: "#14"
+    text: "Flamingos sind eigentlich gar nicht rosa."
+    visuals: ["flamingo", "flamingos"]
+    emoji: "🦩"
+  - text: "Die Farbe kommt aus ihrer Nahrung: kleinen Krebsen und Algen mit Farbstoffen, den Carotinoiden. Ohne dieses Futter verblasst ihr Gefieder. Und die Küken schlüpfen grau."
+    visuals: ["flamingo lake", "shrimp", "@shocked"]
+
+  # 15
+  - chapter: "Schottlands Einhorn"
+    pop: "#15"
+    text: "Das Nationaltier von Schottland ist das Einhorn."
+    visuals: ["scotland highlands", "unicorn"]
+    emoji: "🦄"
+  - text: "Kein Witz. Das Einhorn steht seit Jahrhunderten im schottischen Wappen. Es gilt als Symbol für Reinheit und Stärke."
+    visuals: ["scottish castle", "@laugh"]
+
+  # 16
+  - chapter: "Drei Millionen pro Sekunde"
+    pop: "#16"
+    text: "Dein Körper baut jede Sekunde rund zwei bis drei Millionen neue rote Blutkörperchen."
+    visuals: ["red blood cells", "human body"]
+    emoji: "🩸"
+  - text: "Während du dieses Video schaust, hat dein Körper also schon mehrere hundert Millionen davon hergestellt. Ziemlich fleißig für jemanden, der gerade nur rumsitzt."
+    visuals: ["man watching phone couch", "@laugh"]
+
+  # 17
+  - chapter: "Kürzere Tage bei den Dinos"
+    pop: "#17"
+    text: "Zur Zeit der Dinosaurier hatte ein Tag nur etwa 23 einhalb Stunden."
+    visuals: ["dinosaur", "earth from space"]
+    emoji: "🦖"
+  - text: "Der Mond bremst die Erde mit seiner Anziehungskraft ganz langsam ab. Vor rund 70 Millionen Jahren drehte sie sich deshalb schneller. Ein Jahr hatte damals etwa 372 Tage."
+    visuals: ["moon", "earth rotation"]
+  - text: "Und die Erde wird weiter langsamer. Die Tage werden also immer länger. Nur leider sehr, sehr langsam."
+    visuals: ["clock", "@sad"]
+
+  # 18
+  - chapter: "Ein Teelöffel Neutronenstern"
+    pop: "#18"
+    text: "Und jetzt der versprochene Hammer: Ein Teelöffel Neutronenstern würde auf der Erde Milliarden Tonnen wiegen."
+    visuals: ["neutron star", "teaspoon"]
+    emoji: "🤯"
+    shake: true
+    sfx: boom
+  - text: "Neutronensterne entstehen, wenn ein riesiger Stern explodiert und sein Kern in sich zusammenstürzt. Mehr Masse als unsere Sonne, gepresst in eine Kugel von etwa zwanzig Kilometern Durchmesser."
+    visuals: ["supernova", "galaxy"]
+  - text: "Das ist so dicht, als würdest du die gesamte Menschheit auf die Größe eines Zuckerwürfels zusammenpressen."
+    visuals: ["sugar cube", "crowd people", "@shocked"]
+    pop: "ALLE MENSCHEN"
+
+  - chapter: "Welcher Fakt war der beste?"
+    text: "Welcher Fakt hat dich am meisten überrascht? Schreib die Nummer in die Kommentare. Und wenn du jeden Tag etwas Verrücktes lernen willst: Abonnieren nicht vergessen."
+    visuals: ["@thinking", "galaxy stars"]
+    emoji: "👇"
+    sfx: ding
+
+highlight: [wahr, Herzen, blau, Westen, Beeren, nie, Minuten, fünfmal, Einhorn, Milliarden, Zuckerwürfels, Kommentare]
+
+# Из длинного видео автоматически нарезаются Shorts (вертикально, по главам).
+shorts:
+  - chapter: "Kleopatra und die Mondlandung"
+    title: "Kleopatra lebte näher an der Mondlandung als an den Pyramiden 🤯 #shorts"
+  - chapter: "Ein Tag länger als ein Jahr"
+    title: "Auf der Venus ist ein Tag länger als ein Jahr 🪐 #shorts"
+  - chapter: "Würfel-Kacke"
+    title: "Dieses Tier macht würfelförmige Kacke 💩 #shorts"
+  - chapter: "Haie sind älter als Bäume"
+    title: "Haie sind älter als Bäume 🦈 #shorts"
+  - chapter: "Ein Teelöffel Neutronenstern"
+    title: "Ein Teelöffel davon wiegt Milliarden Tonnen 🤯 #shorts"
+shorts_outro:
+  text: "Folge für mehr Fakten, bei denen dein Gehirn abstürzt."
+  emoji: "👇"
+
+description: |
+  18 Fakten, die so verrückt klingen, dass du sie erst googeln willst – aber alle sind wahr.
+  Welcher hat dich am meisten überrascht? Schreib die Nummer in die Kommentare!
+sources:
+  - "Kleopatra / Pyramiden: https://de.wikipedia.org/wiki/Cheops-Pyramide , https://de.wikipedia.org/wiki/Kleopatra_VII."
+  - "Kraken: https://de.wikipedia.org/wiki/Kraken"
+  - "Venus: https://de.wikipedia.org/wiki/Venus_(Planet)"
+  - "Wombat-Kot (Ig-Nobelpreis Physik 2019): https://en.wikipedia.org/wiki/List_of_Ig_Nobel_Prize_winners"
+  - "Banane als Beere: https://de.wikipedia.org/wiki/Bananen"
+  - "Haie: https://de.wikipedia.org/wiki/Haie"
+  - "Honig: https://www.smithsonianmag.com/science-nature/the-science-behind-honeys-eternal-shelf-life-1218690/"
+  - "Oxford: https://en.wikipedia.org/wiki/University_of_Oxford"
+  - "Faultiere: https://de.wikipedia.org/wiki/Faultiere"
+  - "Blitz: https://de.wikipedia.org/wiki/Blitz"
+  - "Seeotter: https://de.wikipedia.org/wiki/Seeotter"
+  - "Bärtierchen im All (FOTON-M3, 2007): https://de.wikipedia.org/wiki/B%C3%A4rtierchen"
+  - "Eiffelturm: https://de.wikipedia.org/wiki/Eiffelturm"
+  - "Flamingos: https://de.wikipedia.org/wiki/Flamingos"
+  - "Einhorn Schottland: https://en.wikipedia.org/wiki/National_symbols_of_Scotland"
+  - "Rote Blutkörperchen: https://de.wikipedia.org/wiki/Erythrozyt"
+  - "Tageslänge vor 70 Mio. Jahren: de Winter et al. (2020), Paleoceanography and Paleoclimatology"
+  - "Neutronensterne: https://de.wikipedia.org/wiki/Neutronenstern"
+hashtags: [wusstestdu, fakten, wissen]
+tags: [fakten, wusstest du, unnützes wissen, verrückte fakten, 18 fakten, wissen, natur, weltall, geschichte]

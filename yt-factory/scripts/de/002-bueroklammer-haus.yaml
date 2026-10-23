@@ -1,0 +1,48 @@
+# Short: история в мемной подаче.
+title: "Er tauschte eine Büroklammer gegen ein HAUS 📎🏠 #shorts"
+lang: de
+format: short
+
+segments:
+  - text: "Dieser Mann hat eine rote Büroklammer gegen ein Haus getauscht. Kein Witz."
+    visuals: ["red paperclip", "@shocked"]
+    pop: "KEIN WITZ"
+    shake: true
+    sfx: boom
+  - text: "Im Juli 2005 stellt der Kanadier Kyle MacDonald eine einzige rote Büroklammer ins Internet."
+    visuals: ["paperclip", "man laptop"]
+  - text: "Sein Plan: so lange tauschen, bis er ein Haus hat."
+    visuals: ["@laugh", "house"]
+    emoji: "😂"
+  - text: "Für die Büroklammer bekommt er einen Kugelschreiber in Form eines Fisches. Dann einen Türknauf."
+    visuals: ["fish", "door knob"]
+    emoji: "🐟"
+  - text: "Dann einen Campingkocher. Einen Stromgenerator. Ein Schneemobil."
+    visuals: ["camping stove", "power generator", "snowmobile"]
+    pop: "LEVEL UP"
+  - text: "Danach eine Reise, einen Transporter, einen Plattenvertrag und ein Jahr mietfrei wohnen in Phoenix."
+    visuals: ["road trip", "delivery van", "recording studio", "phoenix arizona"]
+  - text: "Und dann wird es absurd: ein Nachmittag mit Rocklegende Alice Cooper."
+    visuals: ["rock concert", "@wow"]
+    emoji: "🤘"
+    sfx: scratch
+  - text: "Den tauscht er gegen eine Schneekugel der Band KISS. Und die Schneekugel gegen eine Rolle in einem Film."
+    visuals: ["snow globe", "film set camera", "movie clapperboard"]
+    emoji: "🎬"
+  - text: "Eine Kleinstadt in Kanada will diese Filmrolle haben. Und gibt ihm dafür ein Haus."
+    visuals: ["farmhouse", "small town canada"]
+    pop: "EIN HAUS!"
+    sfx: ding
+  - text: "Vierzehn Tauschgeschäfte, ein Jahr. Von einer Büroklammer zum eigenen Haus. Was hättest du getauscht?"
+    visuals: ["house keys", "@thinking"]
+    emoji: "👇"
+
+highlight: [Haus, Büroklammer, absurd, Vierzehn, Kanada]
+
+description: |
+  Kyle MacDonald startete 2005 mit einer roten Büroklammer – und landete nach 14 Tauschgeschäften bei einem Haus.
+  Folge für mehr unglaubliche Geschichten!
+sources:
+  - "https://en.wikipedia.org/wiki/One_red_paperclip"
+hashtags: [geschichte, unglaublich, wusstestdu]
+tags: [büroklammer haus, kyle macdonald, one red paperclip, tauschen, unglaubliche geschichten]

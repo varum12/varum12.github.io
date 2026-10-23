@@ -1,0 +1,44 @@
+title: "7 Mal vom Blitz getroffen – und überlebt ⚡ #shorts"
+lang: de
+format: short
+
+segments:
+  - text: "Dieser Mann wurde sieben Mal vom Blitz getroffen. Und hat jedes Mal überlebt."
+    visuals: ["lightning strike", "@shocked"]
+    emoji: "⚡"
+    shake: true
+    sfx: boom
+  - text: "Normalerweise liegt die Chance, im Leben vom Blitz getroffen zu werden, bei etwa eins zu fünfzehntausend."
+    visuals: ["thunderstorm", "lightning sky"]
+  - text: "Roy Sullivan war Ranger in einem Nationalpark in den USA. Und der Himmel hatte offenbar etwas gegen ihn."
+    visuals: ["park ranger", "forest mountains virginia"]
+    emoji: "😅"
+  - text: "Zwischen 1942 und 1977 trifft ihn der Blitz immer wieder. Mal verliert er einen Zehennagel, mal brennen seine Augenbrauen weg."
+    visuals: ["lightning", "@facepalm"]
+    pop: "SCHON WIEDER?!"
+    sfx: scratch
+  - text: "Mehrmals fangen seine Haare Feuer."
+    visuals: ["fire flames", "@scared"]
+    emoji: "🔥"
+    shake: true
+  - text: "Beim siebten Mal steht er beim Angeln an einem See. Und wieder: Blitz."
+    visuals: ["fishing lake", "lightning strike"]
+    sfx: boom
+    shake: true
+  - text: "Heute steht er im Guinness-Buch der Rekorde. Als der Mensch, der am häufigsten vom Blitz getroffen wurde."
+    visuals: ["trophy", "@clap"]
+    pop: "WELTREKORD"
+    sfx: ding
+  - text: "Würdest du mit ihm bei Gewitter spazieren gehen?"
+    visuals: ["storm clouds", "@thinking"]
+    emoji: "👇"
+
+highlight: [sieben, überlebt, Feuer, Blitz, Rekorde]
+
+description: |
+  Roy Sullivan wurde zwischen 1942 und 1977 sieben Mal vom Blitz getroffen – ein Weltrekord.
+sources:
+  - "https://en.wikipedia.org/wiki/Roy_Sullivan"
+  - "Blitz-Wahrscheinlichkeit: National Weather Service (NOAA), Lightning Safety"
+hashtags: [wusstestdu, rekord, unglaublich]
+tags: [blitz, roy sullivan, weltrekord, guinness, unglaubliche geschichten, fakten]

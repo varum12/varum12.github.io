@@ -1,0 +1,69 @@
+# Общие настройки канала. Меняйте здесь — применяется ко всем видео.
+
+channel_name: "WUSSTEST DU?"     # водяной знак внизу кадра
+
+# Голос для каждого языка (бесплатные голоса Microsoft Edge).
+# Послушать все голоса языка: ./video --voice-samples de
+# Позже можно перейти на ElevenLabs: { engine: elevenlabs, voice: "<voice_id>" } + ELEVENLABS_API_KEY
+voices:
+  de: { voice: "de-DE-ConradNeural", rate: "+12%" }
+  en: { voice: "en-US-AndrewNeural", rate: "+10%" }
+  ru: { voice: "ru-RU-DmitryNeural", rate: "+10%" }
+  es: { voice: "es-ES-AlvaroNeural", rate: "+10%" }
+
+sample_text:
+  de: "Wusstest du, dass ein Oktopus drei Herzen hat? Und sein Blut ist blau!"
+  en: "Did you know that an octopus has three hearts? And its blood is blue!"
+  ru: "А вы знали, что у осьминога три сердца? И кровь у него голубая!"
+  es: "¿Sabías que un pulpo tiene tres corazones? ¡Y su sangre es azul!"
+
+# Позиции заданы долями кадра (0.5 = середина).
+formats:
+  short:
+    width: 1080
+    height: 1920
+    cut_seconds: 1.6          # как часто меняется картинка (темп монтажа)
+    font_size: 116
+    caption_y: 0.62           # высота субтитров
+    words_per_caption: 1      # Shorts: по одному слову
+    emoji_x: 0.5
+    emoji_y: 0.40
+    emoji_size: 0.36
+    pop_x: 0.5                # стикер-надпись (pop: "WAS?!")
+    pop_y: 0.24
+  long:
+    width: 1920
+    height: 1080
+    cut_seconds: 2.6
+    font_size: 84
+    caption_y: 0.80
+    words_per_caption: 3      # длинные видео: по 3 слова, текущее подсвечено
+    emoji_x: 0.82
+    emoji_y: 0.36
+    emoji_size: 0.30
+    pop_x: 0.5
+    pop_y: 0.16
+
+style:
+  font: "Montserrat Thin Black"   # имя шрифта из assets/fonts
+  highlight_color: "&H0000E5FF"   # жёлтый (формат ASS: &HAABBGGRR)
+  pop_color: "&H002828E6"         # красная плашка стикера
+  caption_lead: 0.2               # на сколько секунд слово появляется раньше звука (больше = раньше)
+  music_volume: 0.12              # фоновая музыка из assets/music (под голосом приглушается сама)
+  sfx_volume: 0.35                # звуки: whoosh, pop, boom, ding, scratch
+  fps: 30
+
+# Мемные реакции: в сценарии пишите visuals: ["@shocked"] — подставится этот поиск (нужен ключ Pixabay или Pexels).
+reactions:
+  shocked: "shocked surprised face"
+  laugh: "man laughing hard"
+  facepalm: "facepalm"
+  angry: "angry man screaming"
+  thinking: "confused thinking man"
+  wow: "amazed woman wow"
+  sad: "sad crying person"
+  money: "money cash falling"
+  clap: "people applauding"
+  nope: "woman shaking head no"
+  cool: "man sunglasses cool"
+  scared: "scared frightened face"
