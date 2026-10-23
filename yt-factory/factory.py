@@ -104,7 +104,7 @@ def _download(url, dest):
 def _get_json(url, headers=None, data=None):
     def go():
         req = urllib.request.Request(url, data=data, headers={"User-Agent": UA, **(headers or {})})
-        with urllib.request.urlopen(req, timeout=25 if data is None else 180) as r:
+        with urllib.request.urlopen(req, timeout=45 if data is None else 180) as r:
             return json.load(r)
     return _retry(go, tries=2 if data is None else 1)
 
@@ -174,7 +174,8 @@ def synthesize(segments, vcfg, work):
     """Озвучивает каждый сегмент отдельно; возвращает тайминги сегментов и слов (в секундах от начала)."""
     def one(i):
         mp3 = work / f"voice_{i:03d}.mp3"
-        return mp3, _mark_breaks(segments[i]["text"], tts(segments[i]["text"], vcfg, mp3))
+        text = str(segments[i]["text"])
+        return mp3, _mark_breaks(text, tts(text, vcfg, mp3))
 
     with cf.ThreadPoolExecutor(4) as ex:
         results = list(ex.map(one, range(len(segments))))
@@ -210,21 +211,32 @@ def _search_pexels(query, orientation, n):
     return out[:n]
 
 
+def _relevant(result, query):
+    """Openverse ищет широко и легко подсовывает посторонних людей. Берём картинку, только если
+    главное (самое длинное) слово запроса и хотя бы половина остальных есть в названии или тегах."""
+    hay = " ".join([result.get("title") or ""] + [t.get("name", "") for t in result.get("tags") or []]).lower()
+    words = [w for w in re.findall(r"[a-zäöüß]+", query.lower()) if len(w) > 2]
+    if not words:
+        return True
+    hit = [w[:max(4, len(w) - 3)] in hay for w in words]  # грубая основа слова: strawberries ~ strawberry
+    return hit[words.index(max(words, key=len))] and sum(hit) * 2 >= len(words)
+
+
 def _search_openverse(query, orientation, n):
     q = urllib.parse.quote(query)
     aspect = "tall" if orientation == "portrait" else "wide"
     base = (f"https://api.openverse.org/v1/images/?q={q}&license_type=commercial,modification"
-            f"&size=large&mature=false&page_size={n}")
+            f"&category=photograph&size=large&mature=false&page_size={n * 5}")
     # Flickr отдаёт файлы надёжнее всех; вертикальных фото мало, поэтому дальше берём любые.
-    data = {}
+    found = []
     for extra in (f"&source=flickr&aspect_ratio={aspect}", "&source=flickr", ""):
-        data = _get_json(base + extra)
-        if len(data.get("results", [])) >= n:
+        found = [r for r in _get_json(base + extra).get("results", []) if _relevant(r, query)]
+        if len(found) >= n:
             break
     return [{"url": r["url"], "ext": Path(urllib.parse.urlparse(r["url"]).path).suffix.lower() or ".jpg",
              "credit": f"\"{r.get('title') or 'Image'}\" by {r.get('creator') or 'unknown'}, "
                        f"{r['license'].upper()} {r.get('license_version') or ''} ({r.get('foreign_landing_url')})"}
-            for r in data.get("results", [])]
+            for r in found[:n]]
 
 
 def fetch_media(query, orientation, n):
@@ -421,7 +433,7 @@ def ass_escape(text):
 
 def build_ass(words, segments, timeline, highlights, total, W, H, fc, style, channel, path):
     fs, y, per = fc["font_size"], int(H * fc["caption_y"]), fc.get("words_per_caption", 1)
-    hl_color, hl = style["highlight_color"], {h.lower() for h in highlights}
+    hl_color, hl = style["highlight_color"], {str(h).lower() for h in highlights}
     out = [
         "[Script Info]", "ScriptType: v4.00+", f"PlayResX: {W}", f"PlayResY: {H}", "WrapStyle: 2",
         "ScaledBorderAndShadow: yes", "",
@@ -467,11 +479,11 @@ def build_ass(words, segments, timeline, highlights, total, W, H, fc, style, cha
     px, py = int(W * fc["pop_x"]), int(H * fc["pop_y"])
     for seg, tl in zip(segments, timeline):
         if seg.get("pop"):
-            ang = random.Random(seg["pop"]).choice([-6, -4, 4, 6])
+            ang = random.Random(str(seg["pop"])).choice([-6, -4, 4, 6])
             end = tl["start"] + min(1.5, tl["dur"])
             out.append(f"Dialogue: 3,{ass_time(tl['start'])},{ass_time(end)},Pop,,0,0,0,,"
                        f"{{\\an5\\pos({px},{py})\\frz{ang}\\fscx40\\fscy40\\t(0,120,\\fscx110\\fscy110)"
-                       f"\\t(120,200,\\fscx100\\fscy100)}}{ass_escape(seg['pop'])}")
+                       f"\\t(120,200,\\fscx100\\fscy100)}}{ass_escape(str(seg['pop']))}")
     out.append(f"Dialogue: 0,{ass_time(0)},{ass_time(total)},Mark,,0,0,0,,{ass_escape(channel)}")
     path.write_text("\n".join(out) + "\n", encoding="utf-8")
 
@@ -499,7 +511,7 @@ def make_thumbnail(spec, media_path, out):
     shade.putdata([int(210 * max(0, 1 - x / (W * 0.75))) for x in range(W)])
     canvas.paste((0, 0, 0), (0, 0), shade.resize((W, H)))
 
-    text = spec.get("text", "").upper()
+    text = str(spec.get("text", "")).upper()
     cyr = any("Ѐ" <= c <= "ӿ" for c in text)
     font_path = FONTS / ("Montserrat-Black-cyrillic.ttf" if cyr else "Montserrat-Black-latin.ttf")
     lines = []
@@ -670,7 +682,7 @@ def build(script, name, fmt, cfg):
     desc += [" ".join(f"#{t}" for t in tags)]
     (folder / "upload.txt").write_text(
         f"TITLE:\n{script.get('title', '')}\n\nDESCRIPTION:\n" + "\n".join(desc) +
-        f"\n\nTAGS:\n{', '.join(script.get('tags', []))}\n", encoding="utf-8")
+        f"\n\nTAGS:\n{', '.join(map(str, script.get('tags', [])))}\n", encoding="utf-8")
 
     shutil.rmtree(work)
     print(f"Готово: {final}  ({total:.1f} сек)")
