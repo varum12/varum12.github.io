@@ -746,8 +746,10 @@ def build(script, name, fmt, cfg):
         desc += ["Kapitel:"] + [f"{int(t // 60)}:{int(t % 60):02d} {c}" for t, c in chapters] + [""]
     if script.get("sources"):
         desc += ["Quellen:"] + [f"- {s}" for s in script["sources"]] + [""]
+    # CC0 и Public Domain упоминания не требуют — в описании только те, кому оно положено.
+    credits = sorted(c for c in credits if not re.search(r", (CC0|PDM)\b", c))
     if credits:
-        desc += ["Bildnachweise:"] + [f"- {c}" for c in sorted(credits)] + [""]
+        desc += ["Bildnachweise:"] + [f"- {c}" for c in credits] + [""]
     desc += [" ".join(f"#{t}" for t in tags)]
     (folder / "upload.txt").write_text(
         f"TITLE:\n{script.get('title', '')}\n\nDESCRIPTION:\n" + "\n".join(desc) +
