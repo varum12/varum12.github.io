@@ -527,10 +527,13 @@ def build_ass(words, segments, timeline, highlights, total, W, H, fc, style, cha
             chunks[-1].append(w)
         else:
             chunks.append([w])
+    # Слово появляется чуть раньше, чем звучит: ровно по началу звука текст кажется опаздывающим.
+    lead = style.get("caption_lead", 0.2)
     k = 0
     for chunk in chunks:
         for wi, w in enumerate(chunk):
-            end = words[k + 1]["start"] if k + 1 < len(words) else min(total, w["end"] + 0.4)
+            start = max(0.0, w["start"] - lead)
+            end = words[k + 1]["start"] - lead if k + 1 < len(words) else min(total, w["end"] + 0.4)
             k += 1
             parts = []
             for j, other in enumerate(chunk):
@@ -539,7 +542,7 @@ def build_ass(words, segments, timeline, highlights, total, W, H, fc, style, cha
                     t = f"{{\\c{hl_color}}}{t}{{\\c&H00FFFFFF&}}"
                 parts.append(t)
             pop = "\\fscx125\\fscy125\\t(0,90,\\fscx100\\fscy100)" if (per == 1 or wi == 0) else ""
-            out.append(f"Dialogue: 2,{ass_time(w['start'])},{ass_time(end)},Word,,0,0,0,,"
+            out.append(f"Dialogue: 2,{ass_time(start)},{ass_time(end)},Word,,0,0,0,,"
                        f"{{\\an5\\pos({W // 2},{y}){pop}}}{' '.join(parts)}")
 
     px, py = int(W * fc["pop_x"]), int(H * fc["pop_y"])

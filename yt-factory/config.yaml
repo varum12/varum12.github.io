@@ -48,6 +48,7 @@ style:
   font: "Montserrat Thin Black"   # имя шрифта из assets/fonts
   highlight_color: "&H0000E5FF"   # жёлтый (формат ASS: &HAABBGGRR)
   pop_color: "&H002828E6"         # красная плашка стикера
+  caption_lead: 0.2               # на сколько секунд слово появляется раньше звука (больше = раньше)
   music_volume: 0.12              # фоновая музыка из assets/music (под голосом приглушается сама)
   sfx_volume: 0.35                # звуки: whoosh, pop, boom, ding, scratch
   fps: 30
