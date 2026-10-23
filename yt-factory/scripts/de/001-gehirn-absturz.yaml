@@ -1,19 +1,35 @@
-# Пример сценария. Скопируйте файл, поменяйте текст и картинки — и запускайте.
+# Short: факты в мемной подаче. Скопируйте файл, поменяйте текст — и запускайте.
 title: "3 Fakten, bei denen dein Gehirn abstürzt 🤯 #shorts"
 lang: de
 format: short          # short = 9:16, long = 16:9
 
-segments:              # каждый сегмент = фраза + картинки к ней (поиск на английском или файл из assets/media)
+# Каждая фраза: text — что говорит голос; visuals — что показать (поиск на английском,
+# @реакция из config.yaml или файл/папка из assets/media). Мемные приправы по желанию:
+#   emoji: "🤯"   анимированный эмодзи      pop: "WAS?!"  стикер-надпись
+#   shake: true    тряска камеры             sfx: boom     звук (boom, ding, scratch, pop, whoosh, none)
+segments:
   - text: "Drei Fakten, bei denen dein Gehirn kurz abstürzt."
-    visuals: ["octopus", "banana bunch"]
+    visuals: ["octopus", "@shocked"]
+    emoji: "🤯"
+    shake: true
+    sfx: boom
   - text: "Erstens: Ein Oktopus hat drei Herzen. Und sein Blut ist blau."
     visuals: ["octopus underwater", "octopus tentacles"]
-  - text: "Zweitens: Bananen sind botanisch gesehen Beeren. Erdbeeren dagegen nicht."
-    visuals: ["bananas", "strawberries"]
+    pop: "3 HERZEN?!"
+  - text: "Zweitens: Bananen sind botanisch gesehen Beeren."
+    visuals: ["bananas"]
+    emoji: "🍌"
+  - text: "Erdbeeren dagegen nicht."
+    visuals: ["strawberries", "@facepalm"]
+    pop: "WAS?!"
+    sfx: scratch
   - text: "Drittens: Honig verdirbt praktisch nie. In ägyptischen Gräbern fand man Honig, der Tausende Jahre alt war."
     visuals: ["honey jar", "egyptian pyramids", "honey dripping"]
+    emoji: "😱"
   - text: "Welchen Fakt kanntest du noch nicht? Schreib es in die Kommentare!"
-    visuals: ["honeycomb", "octopus"]
+    visuals: ["honeycomb", "@thinking"]
+    emoji: "👇"
+    sfx: ding
 
 highlight: [drei, Herzen, blau, Beeren, nicht, nie, Erstens, Zweitens, Drittens, Kommentare]
 
@@ -24,5 +40,5 @@ sources:
   - "Oktopus: https://de.wikipedia.org/wiki/Kraken"
   - "Banane als Beere: https://de.wikipedia.org/wiki/Bananen"
   - "Honig: https://www.smithsonianmag.com/science-nature/the-science-behind-honeys-eternal-shelf-life-1218690/"
-hashtags: [wusstestdu, fakten, shorts, natur]
+hashtags: [wusstestdu, fakten, natur]
 tags: [wusstest du, fakten, unnützes wissen, oktopus, banane, honig, natur fakten]

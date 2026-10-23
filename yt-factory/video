@@ -1,0 +1,4 @@
+#!/bin/bash
+# Короткая команда: ./video scripts/de/001-gehirn-absturz.yaml
+DIR="$(cd "$(dirname "$0")" && pwd)"
+exec "$DIR/.venv/bin/python" "$DIR/factory.py" "$@"
